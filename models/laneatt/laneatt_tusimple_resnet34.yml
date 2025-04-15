@@ -4,6 +4,6 @@ model:
     backbone: resnet34
     S: &S 72
     topk_anchors: 1000
-    anchors_freq_path: 'none'
+    anchors_freq_path: '/mnt/cache/liyuxi/BadLANE/model_weights/tusimple_anchors_freq.pt'
     img_h: &img_h 360
     img_w: &img_w 640

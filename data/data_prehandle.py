@@ -71,8 +71,9 @@ def save_data():
         train_result['adv_img'].append(adv_img.cpu().data)
         train_result['pois_img'].append(pois_img.cpu().data)
     
-        if i == 5:
-            break
+        # if i == 80:
+        #     print("Gnerate  batches, break")
+        #     break
 
         if i % 100 == 0 and args.view:
             w_img = (image[0].cpu().permute(1, 2, 0).numpy() * 255).astype(np.uint8)

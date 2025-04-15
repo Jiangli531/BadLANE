@@ -104,6 +104,7 @@ class Trainer(object):
         print('Meta Learner Initialization done.')
 
     def adv_loss(self, y, label):
+        #在这里通过adv_model提取特征，进行损失计算，adv_model理解为教师模型
         loss = 0.0
         for adv_model in self.adv_models:
             logits = adv_model(y)
@@ -153,6 +154,11 @@ class Trainer(object):
         """
         Reptile meta training process
         """
+        
+        """
+        cln_img: clean image
+        pois_img: poisoned image with env trigger  (论文中的 x + t_e )
+        """
         if self.args.curriculum:
             x = batch_data['cln_img']
             label = batch_data['pois_img']
@@ -174,6 +180,7 @@ class Trainer(object):
         for i in range(self.meta_iteration):
             y, logdet = self.flow.decode(processed_x, return_prob=True)
 
+            ## 内循环的损失函数计算部分
             loss_prob, loss_cls = torch.mean(logdet), self.adv_loss(
                 torch.clamp(torch.clamp(y, -self.linf, self.linf) + x, 0, 1), label)
             loss = loss_cls

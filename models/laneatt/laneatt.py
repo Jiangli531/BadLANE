@@ -17,7 +17,7 @@ from .matching import match_proposals_with_targets
 class LaneATT(nn.Module):
     def __init__(self,
                  backbone='resnet34',
-                 pretrained_path='none',
+                 pretrained_path='/mnt/cache/liyuxi/BadLANE/model_weights/resnet34/resnet34-b627a593.pth',
                  pretrained_backbone=True,
                  S=72,
                  img_w=640,

@@ -64,6 +64,7 @@ def load_laneatt_model(config_path=None, model_path=None):
 
     print('model_name: LaneATT')
     checkpoint = torch.load(model_path)['model']
+    print('Load Model_path: ', model_path)
     model.load_state_dict(checkpoint)
     # print(model)
     model = model.feature_extractor
